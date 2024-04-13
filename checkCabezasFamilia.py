@@ -17,7 +17,7 @@ conn = mysql.connector.connect(
 )
 cursor = conn.cursor(dictionary=True)
 
-# Obtener todos los datos de la primera tabla
+# Obtener todos los datos de la tabla de familia
 cursor.execute("SELECT id,principal FROM familia")
 familias = cursor.fetchall()
 
@@ -25,8 +25,6 @@ familias = cursor.fetchall()
 
 # Iterar sobre los datos de ambas tablas
 for familia in familias:
-    # Aquí puedes hacer lo que quieras con los datos de ambas tablas
-    # Obtener todos los datos de la segunda tabla
     cursor.execute("SELECT familia FROM socio WHERE id=%s",(familia["principal"],))
     socio = cursor.fetchall()[0]
     if(socio["familia"]!=familia["id"]):
