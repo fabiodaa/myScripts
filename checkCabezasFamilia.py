@@ -13,7 +13,8 @@ creds=read_file("bbdd.txt")
 conn = mysql.connector.connect(
     host=creds[0],
     user=creds[1],
-    database=creds[2]
+    database=creds[2],
+    passwd=creds[3]
 )
 cursor = conn.cursor(dictionary=True)
 
@@ -21,7 +22,7 @@ cursor = conn.cursor(dictionary=True)
 cursor.execute("SELECT id,principal FROM familia")
 familias = cursor.fetchall()
 
-
+print("Ejecutando...")
 
 # Iterar sobre los datos de ambas tablas
 for familia in familias:
