@@ -23,13 +23,15 @@ cursor.execute("SELECT id,principal FROM familia")
 familias = cursor.fetchall()
 
 print("Ejecutando...")
-
+i=0
 # Iterar sobre los datos de ambas tablas
 for familia in familias:
+    i+=1
     cursor.execute("SELECT familia FROM socio WHERE id=%s",(familia["principal"],))
     socio = cursor.fetchall()[0]
     if(socio["familia"]!=familia["id"]):
         print("Error en familia "+str(familia["id"]))
 
+print("Ejecutado con "+str(i)+" errores")
 # Cerrar la conexión a la base de datos
 conn.close()
